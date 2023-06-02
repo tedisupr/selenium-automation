@@ -13,13 +13,19 @@ class TestLogin(unittest.TestCase): # test scenario
     def setUp(self):
         self.browser = webdriver.Chrome(ChromeDriverManager().install())
 
-    def test_failed_login(self): #test cases 1
+    def test_failed_login_empty_pass(self): #test cases 1
         driver = self.browser
-        baseLogin.test_failed_login(driver)
+        baseLogin.test_failed_login_empty_pass(driver)
         error_message = driver.find_element(By.CSS_SELECTOR, elem.errorMessage).text
         self.assertIn(inputLogin.pesan, error_message)
 
-    def test_success_login(self): #test cases 2
+    def test_failed_login_empty_user(self): #test cases 2
+        driver = self.browser
+        baseLogin.test_failed_login_empty_user(driver)
+        error_message = driver.find_element(By.CSS_SELECTOR, elem.errorMessage).text
+        self.assertIn(inputLogin.pesanUsername, error_message)
+
+    def test_success_login(self): #test cases 3
         driver = self.browser
         baseLogin.test_success_login(driver)
 

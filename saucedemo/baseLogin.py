@@ -7,13 +7,19 @@ from selenium.webdriver.support.wait import WebDriverWait
 from pageObject.locator import elem
 from pageObject.inputan import inputLogin
 
-def test_failed_login(driver): #test cases 1
+def test_failed_login_empty_pass(driver): #test cases 1
     driver.implicitly_wait(10)
     driver.get(inputLogin.baseUrl)
     driver.find_element(By.ID, elem.username).send_keys(inputLogin.userInvalid)
     driver.find_element(By.NAME, elem.loginButton).click()
 
-def test_success_login(driver): #test cases 2
+def test_failed_login_empty_user(driver): #test cases 2
+    driver.implicitly_wait(10)
+    driver.get(inputLogin.baseUrl)
+    driver.find_element(By.CSS_SELECTOR, elem.password).send_keys(inputLogin.password)
+    driver.find_element(By.NAME, elem.loginButton).click()
+
+def test_success_login(driver): #test cases 3
     driver.get(inputLogin.baseUrl)
     driver.find_element(By.ID, elem.username).send_keys(inputLogin.userValid)
     driver.find_element(By.CSS_SELECTOR, elem.password).send_keys(inputLogin.password)
