@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 import baseLogin
 from pageObject.locator import elem
+from pageObject.inputan import inputLogin
 
 class TestLogin(unittest.TestCase): # test scenario
 
@@ -16,7 +17,7 @@ class TestLogin(unittest.TestCase): # test scenario
         driver = self.browser
         baseLogin.test_failed_login(driver)
         error_message = driver.find_element(By.CSS_SELECTOR, elem.errorMessage).text
-        self.assertIn("Epic sadface: Password is required", error_message)
+        self.assertIn(inputLogin.pesan, error_message)
 
     def test_success_login(self): #test cases 2
         driver = self.browser
